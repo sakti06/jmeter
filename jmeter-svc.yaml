@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jmeter-svc
+  labels:
+    jmeter_mode: jmeter
+spec:
+  ports:
+    - port: 60000
+      targetPort: 80
+  selector:
+    jmeter_mode: jmeter
+type: LoadBalancer 
+  

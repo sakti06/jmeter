@@ -1,0 +1,23 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: jmeter-dpl
+  labels:
+    jmeter_mode: jmeter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      jmeter_mode: jmeter
+  template:
+    metadata:
+      labels:
+        jmeter_mode: jmeter
+    spec:
+      containers:
+      - name: jmmaster
+        image: 717782644851.dkr.ecr.us-east-1.amazonaws.com/jmeter-test-repo:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 60000
+      
